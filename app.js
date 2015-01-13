@@ -5,10 +5,9 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 var moment = require('moment');
 
-app.post('/log/:service/:incomingURL', function(req, res) {
+app.post('/log/:service', function(req, res) {
   if (req.params.service == 'logentries') {
     var request = require('request');
-    console.log(req.params.incomingURL);
     var data = {
       text: req.body.alert.name,
       attachments: [{
@@ -24,14 +23,13 @@ app.post('/log/:service/:incomingURL', function(req, res) {
         ]
       }]
     };
-    request.post(req.params.incomingURL,
+    request.post(req.query.incomingURL,
       {
         form: {
           payload: JSON.stringify(data)
         }
       },
       function(error, response, body) {
-        console.log(error, response, body);
         res.status(201).send();
       }
     );

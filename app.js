@@ -7,18 +7,18 @@ var moment = require('moment');
 
 app.post('/log/:service', function(req, res) {
   if (req.params.service == 'logentries') {
-    console.log(JSON.parse(req.body.payload));
+    var payload = JSON.parse(req.body.payload);
     var request = require('request');
     var data = {
-      text: req.body.alert.name,
+      text: payload.alert.name,
       attachments: [{
-        fallback: req.body.alert.name,
-        pretext: req.body.alert.name,
+        fallback: payload.alert.name,
+        pretext: payload.alert.name,
         color: '#D00000',
         fields:[
           {
-            title: req.body.host.name,
-            value: req.body.event,
+            title: payload.host.name,
+            value: payload.event,
             short:false
           }
         ]

@@ -7,6 +7,7 @@ var moment = require('moment');
 
 app.post('/log/:service', function(req, res) {
   if (req.params.service == 'logentries') {
+    console.log(req.body);
     var request = require('request');
     var data = {
       text: req.body.alert.name,

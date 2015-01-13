@@ -2,7 +2,7 @@ var express = require('express');
 var q = require('q');
 var app = express();
 var bodyParser = require('body-parser');
-app.use(bodyParser.json());
+app.use(bodyParser.urlencoded());
 var moment = require('moment');
 
 app.post('/log/:service', function(req, res) {

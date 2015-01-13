@@ -32,8 +32,12 @@ app.post('/log/:service/:incomingURL', function(req, res) {
       },
       function(error, response, body) {
         console.log(error, response, body);
+        res.status(201).send();
       }
     );
+  }
+  else {
+    res.status(400).send();
   }
 });
 

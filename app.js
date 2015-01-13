@@ -13,12 +13,12 @@ app.post('/log/:service', function(req, res) {
       text: payload.alert.name,
       attachments: [{
         fallback: payload.alert.name,
-        pretext: payload.alert.name,
+        pretext: payload.log.name,
         color: '#D00000',
         fields:[
           {
-            title: payload.host.name,
-            value: payload.event,
+            title: payload.log.name,
+            value: payload.event.m,
             short:false
           }
         ]
